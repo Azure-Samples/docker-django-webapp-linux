@@ -13,6 +13,6 @@ RUN apt-get update \
 	&& echo "$SSH_PASSWD" | chpasswd 
 
 COPY sshd_config /etc/ssh/
-	
+RUN service ssh start	
 EXPOSE 8000 2222
 CMD ["python", "/code/manage.py", "runserver", "0.0.0.0:8000"]
