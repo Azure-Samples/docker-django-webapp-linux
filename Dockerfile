@@ -13,8 +13,8 @@ RUN apt-get update \
 	&& echo "$SSH_PASSWD" | chpasswd 
 
 COPY sshd_config /etc/ssh/
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod u+x /usr/local/bin/entrypoint.sh
+COPY init.sh /usr/local/bin/
+RUN chmod u+x /usr/local/bin/init.sh
 
 EXPOSE 8000 2222
 ENTRYPOINT ["init.sh"]
