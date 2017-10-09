@@ -6,6 +6,7 @@ WORKDIR /code
 ADD requirements.txt /code/
 RUN pip install -r requirements.txt
 ADD . /code/
+
 # ssh
 ENV SSH_PASSWD "root:Docker!"
 RUN apt-get update \
@@ -13,8 +14,9 @@ RUN apt-get update \
 	&& echo "$SSH_PASSWD" | chpasswd 
 
 COPY sshd_config /etc/ssh/
-COPY init.sh /usr/local/bin/
-RUN chmod u+x /usr/local/bin/init.sh
-
+COPY entrypoint.sh /usr/local/bin/
+	
+RUN chmod u+x /usr/local/bin/entrypoint.sh
 EXPOSE 8000 2222
-ENTRYPOINT ["init.sh"]
+#CMD ["python", "/code/manage.py", "runserver", "0.0.0.0:8000"]
+ENTRYPOINT ["entrypoint.sh"]
