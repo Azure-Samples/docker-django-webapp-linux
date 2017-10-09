@@ -14,9 +14,9 @@ RUN apt-get update \
 	&& echo "$SSH_PASSWD" | chpasswd 
 
 COPY sshd_config /etc/ssh/
-COPY entrypoint.sh /usr/local/bin/
+COPY init.sh /usr/local/bin/
 	
-RUN chmod u+x /usr/local/bin/entrypoint.sh
+RUN chmod u+x /usr/local/bin/init.sh
 EXPOSE 8000 2222
 #CMD ["python", "/code/manage.py", "runserver", "0.0.0.0:8000"]
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["init.sh"]
