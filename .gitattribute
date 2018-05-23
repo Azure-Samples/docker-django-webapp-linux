@@ -1,5 +1,5 @@
 * text=auto
-*.sh text
+*.sh text eol=lf
 *.py text
 sshd_config text
 Dockerfile text
